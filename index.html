@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kelulusan SDN 106/1 Pelayangan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #2d3436;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        h2 {
+            color: #0984e3;
+            margin-bottom: 5px;
+        }
+        h3 {
+            margin-top: 0;
+            font-weight: 500;
+            color: #636e72;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            border: 2px solid #b2bec3;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        button {
+            background-color: #00b894;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #009432;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .lulus {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .tidak-lulus {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>PENGUMUMAN KELULUSAN</h2>
+    <h3>SDN 106/1 PELAYANGAN</h3>
+    <hr style="border: 1px solid #dfe6e9;">
+    
+    <p>Silakan masukkan nama lengkap siswa di bawah ini:</p>
+    <input type="text" id="namaSiswa" placeholder="CONTOH: ABDULLAH ALI" autocomplete="off">
+    <button onclick="cekKelulusan()">CEK HASIL</button>
+
+    <div id="hasilPencarian" class="result"></div>
+</div>
+
+<script>
+    // Data nama siswa yang lulus sesuai database Anda
+    const dataLulus = [
+        "ABDULLAH ALI",
+        "ADIBA HUMAIROH",
+        "AFIQA DALILAH",
+        "AIRIN DWI APRILIA",
+        "AKBAR FEBRIANSYAH",
+        "ALPAN AZIZAN",
+        "ALVIN PRATISTA",
+        "ANGGI CAHYA RISKI",
+        "ARIEL HARYADI",
+        "AZZAH NURINAYAH",
+        "BILQIS HUMAIRAH",
+        "CAHYA AQILA WILYA",
+        "DASTAN PUMENA",
+        "DILLA AYU INDRIANI",
+        "GHALIN AZARINE NATHANIA",
+        "LUTFI ARFANDI",
+        "MUHAMAD FAIZ HARDIANSYA",
+        "MUHAMMAD MIFTAHUDIN HIDAY",
+        "NABHAN ZULFADHLI",
+        "NABILA RAMADHANI",
+        "RAFIF JAIN BUTAR BUTAR",
+        "ZAHWA HUMAIRO",
+        "ZALFA NAYKIA RAFAYUKA"
+    ];
+
+    function cekKelulusan() {
+        const inputNama = document.getElementById("namaSiswa").value.trim().toUpperCase();
+        const hasilDiv = document.getElementById("hasilPencarian");
+
+        if (inputNama === "") {
+            alert("Silakan masukkan nama terlebih dahulu!");
+            return;
+        }
+
+        // Mengecek apakah nama yang diinput ada di dalam daftar dataLulus
+        if (dataLulus.includes(inputNama)) {
+            hasilDiv.className = "result lulus";
+            hasilDiv.innerHTML = `<strong>Selamat!</strong> Anda dinyatakan lulus dari <strong>SDN 106/1 PELAYANGAN</strong>.<br>Selamat menempuh jenjang pendidikan selanjutnya. 🎉🎓`;
+            hasilDiv.style.display = "block";
+        } else {
+            hasilDiv.className = "result tidak-lulus";
+            hasilDiv.innerHTML = `Nama <strong>"${inputNama}"</strong> tidak ditemukan atau periksa kembali penulisan nama lengkap Anda. (Gunakan huruf kapital sesuai nama di sekolah)`;
+            hasilDiv.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
